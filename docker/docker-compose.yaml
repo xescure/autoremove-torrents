@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+    autoremove-torrents-dev:
+        build:
+          context: ../
+          dockerfile: ./docker/Dockerfile
+        volumes:
+          - ./config:/config
+          - ./logs:/logs
+        environment:
+          - SCHEDULE=
+        # command: ["-v", "-c", "/config/config.yml", "-l", "/logs"]
+        # command: ["--view", "--conf", "/config/config.yml", "--log", "/logs"]
+        command: --conf=/config/config.yml --log=/logs
+    autoremove-torrents:
+        build:
+          context: ../
+          dockerfile: ./docker/Dockerfile
+        volumes:
+          - <location of your config directory>:/config
+          - <location of your logs>:/logs
+        environment:
+          - SCHEDULE=*/15 * * * *
+        # command: --conf=/config/config.yml --log=/logs
