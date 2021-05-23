@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+    autoremove-torrents:
+        build: .
+        volumes:
+          - ./config:/config
+          - ./logs:/logs
